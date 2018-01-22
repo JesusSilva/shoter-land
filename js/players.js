@@ -5,6 +5,14 @@ function Player (name, health, speed, jump, positionX, positionY){
     this.jump = jump;
     this.positionX = positionX;
     this.positionY = positionY;
+    this.bottom = bottom;
+    this.left = left;
+}
+
+Player.prototype.createPlayer = function (){
+    var element = $('<div/>', { 'class': 'player' });
+    element.css({bottom:this.positionY, left:this.positionX, height: this.height, width: this.width});
+    $(".game").append(element); 
 }
 
 Player.prototype.remainingLife = function (value){

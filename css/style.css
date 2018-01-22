@@ -31,7 +31,9 @@ h1 {
 }
 
 .obstacle {
-    background: red;
+    background: url("../img/bg-obstacle.png");
+    background-size: 16px;
+    background-repeat: repeat;
     position: absolute;
 }
 
