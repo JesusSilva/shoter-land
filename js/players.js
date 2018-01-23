@@ -1,17 +1,17 @@
-function Player (name, health, speed, jump, positionX, positionY){
+function Player (name, positionX, positionY){
     this.namePlayer = name;
-    this.health = health;
-    this.speed = speed;
-    this.jump = jump;
+    this.health = 3;
+    this.speed = 0;
+    this.jump = 0;
     this.positionX = positionX;
     this.positionY = positionY;
-    this.bottom = bottom;
-    this.left = left;
 }
+
+
 
 Player.prototype.createPlayer = function (){
     var element = $('<div/>', { 'class': 'player' });
-    element.css({bottom:this.positionY, left:this.positionX, height: this.height, width: this.width});
+    element.css({left:this.positionX, bottom:this.positionY});
     $(".game").append(element); 
 }
 

@@ -37,10 +37,12 @@ h1 {
     position: absolute;
 }
 
-/*
-bottom: 43px;
-    left: calc(50% - 15px);
-    height: 150px;
-    width: 30px;
+.player {
+    background: url("../img/mario.png");
+    width: 50px;
+    height: 70px;
     position: absolute;
-*/
+    background-repeat: no-repeat;
+    background-size: 62px;
+    width: 62px;
+}
