@@ -32,7 +32,7 @@ h1 {
 
 .obstacle {
     background: url("../img/bg-obstacle.png");
-    background-size: 16px;
+    background-size: 30px;
     background-repeat: repeat;
     position: absolute;
 }
