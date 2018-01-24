@@ -28,6 +28,7 @@ h1 {
     height: 100%;
     background-image: url("../img/background.jpg");
     background-size: 915px;
+    position: relative;
 }
 
 .obstacle {
