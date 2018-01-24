@@ -1,6 +1,5 @@
 var game;
 $(document).ready(function() {
-  
   console.log("entro!");
   game = new Game();
 
@@ -28,11 +27,11 @@ $(document).ready(function() {
         break;
     }
   };
-  
+
   document.onkeyup = function(e) {
     switch (e.keyCode) {
       case 37:
-        console.log("onkeyup movimiento izq")
+        console.log("onkeyup movimiento izq");
         game.player1.direction[0] = false;
         console.log(game.player1.direction[0]);
         break;
@@ -42,7 +41,6 @@ $(document).ready(function() {
         console.log(game.player1.direction[1]);
         break;
       case 38:
-
         game.player1.direction[2] = false;
         break;
       case 40:
@@ -53,14 +51,14 @@ $(document).ready(function() {
 
   function move() {
     if (game.player1.direction[0] == true) {
-      console.log("Left")
+      console.log("Left");
       game.player1.move(-1);
     } else if (game.player1.direction[1] == true) {
-      console.log("Right")
+      console.log("Right");
       game.player1.move(1);
     }
   }
-  
+
   function jump() {
     if (game.player1.direction[2] == true) {
       console.log("Up");
@@ -75,11 +73,6 @@ $(document).ready(function() {
     game.player1.jump();
     game.player1.render();
   }
-  
-  
+
   setInterval(update, 1);
 });
-
-
-
-
