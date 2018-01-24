@@ -4,6 +4,6 @@ function Game (){
     this.obstacle2 = new Obstacle(30, 200, "calc(30% - 100px)", 425, "iquierda");
     this.obstacle3 = new Obstacle(30, 200, "calc(70% - 100px)", 425, "derecha");
     this.obstacle4 = new Obstacle(30, 200, "calc(50% - 100px)", 575, "superior");
-    this.player1 = new Player ("Jesus", 10, 233);
+    this.player1   = new Player ("Jesus", 10, 233);
 }
 
