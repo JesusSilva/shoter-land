@@ -3,6 +3,7 @@ function Player(speed, x, y, size) {
   this.posX = x;
   this.posY = y;
   this.size = size;
+  this.direction = [false, false, false, false];
   this.health = 3;
   this.element = $("<div>")
   .addClass("player")
@@ -12,21 +13,21 @@ function Player(speed, x, y, size) {
 
 //funcion para mover el Player
 Player.prototype.move = function(direction) {
+  console.log("muevo al jugador")
   var newX = this.posX + this.speed * direction;
   if (newX >= 0 && newX <= this.size.width - 62){
     console.log(this.posX);
     this.posX += this.speed * direction;
+    console.log(this.speed)
   }
-  // var newY = this.posY + this.speed * direction;
-  // if (newY >= 0 && newY <= this.size.width - 70){
-  //   console.log(this.posY);
-  //   this.posY += this.speed * direction;
-  // }
 };
 
 Player.prototype.jump = function(direction) {
-  console.log(this.posY);
-  this.posY += this.speed * direction;
+  var newY = this.posY + this.speed * direction;
+  if (newY >= 0 && newY <= this.size.width - 70){
+    console.log(this.posY);
+    this.posY += this.speed * direction;
+  }
 };
 
 // funcion para parar el Player
