@@ -1,5 +1,6 @@
 var game;
 $(document).ready(function() {
+  
   console.log("entro!");
   game = new Game();
 
@@ -33,9 +34,9 @@ $(document).ready(function() {
 
 });
 
+setInterval(update, 1000 / 60);
 function update() {
   game.player1.render();
 }
 
-setInterval(update, 1000 / 60);
 
