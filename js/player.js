@@ -17,15 +17,27 @@ function Player(maxSpeed, x, y, size, width, height) {
 
 //Funcion para mover el cubo
 Player.prototype.moveX = function(direction) {
-  this.speedX = this.maxSpeed * direction;
-  // if (direction == -1){
-    
-  // }
+  if (direction == -1){
+    "background-image", "url(../img/mario-reverse.png)"
+    $(".player").css("background-image", "url(./img/mario-reverse.png)")
+    this.speedX = this.maxSpeed * direction;
+  }else {
+    this.speedX = this.maxSpeed * direction;
+    $(".player").css("background-image", "url(./img/mario.png)")
+  }
 };
 
 Player.prototype.moveY = function(direction) {
   this.speedY = this.maxSpeed * direction;
 };
+
+Player.prototype.collisionLateral = function () {
+  console.log("chocaste");
+}
+
+Player.prototype.collisionDown = function () {
+  this.speedY = 0;
+}
 
 Player.prototype.winner = function() {
   if (this.posX > this.size.width - 80 && this.posY == 500){
@@ -40,7 +52,7 @@ Player.prototype.render = function() {
     this.posX = newX;
   }
 
-  var newY = this.posY + this.speedY - 6;
+  var newY = this.posY + this.speedY - 3;
   if (newY >= 0 && newY <= this.size.height - 70) {
     this.posY = newY;
   }

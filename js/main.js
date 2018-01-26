@@ -30,63 +30,37 @@ $(document).ready(function() {
     }
   };
 
-  function checkCollisions(obstacle) {
+  function checkCollisions() {
     var marioWidth = game.player.width;
     var marioHeight = game.player.height;
     var marioX = game.player.posX;
     var marioY = game.player.posY;
-    var obstacleWidth = game.obstacles.width;
-    var obstacleHeight = game.obstacles.height;
-    var obstacleX = game.obstacles.positionX;
-    var obstacleY = game.obstacles.positionY;
+    var obstacleWidth = [];
+    var obstacleHeight = [];
+    var obstacleX = [];
+    var obstacleY = [];
+
+    game.obstacles.forEach(function(e){
+      obstacleWidth.push(e.width);
+      obstacleHeight.push(e.height);
+      obstacleX.push(e.positionX);
+      obstacleY.push(e.positionY);
+    });
     
-    console.log(marioWidth);
-    console.log(marioHeight);
-    console.log(marioX);
-    console.log(marioY);
-    console.log(obstacleWidth);
-    console.log(obstacleHeight);
-    console.log(obstacleX);
-    console.log(obstacleY);
-    
-    
-    
-    if (marioX < obstacleX + pelota.width &&
-      marioX + jugador.width > obstacleX &&
-      jugador.y < pelota.y + pelota.height &&
-      jugador.y + jugador.height > pelota.y ) {
-      pelota.switchDirection();
-  }
+    for (i = 0; i < game.obstacles.length; i++){
+      if (marioX < obstacleX[i] + obstacleWidth[i] &&
+        marioX + marioWidth > obstacleX[i] &&
+        marioY < obstacleY[i] + obstacleHeight[i] &&
+        marioY + marioHeight > obstacleY[i]) {
+        game.player.collisionLateral();
+      }
+    }
   }
 
-
-  
-  
   setInterval(function() {
     game.player.render();
     game.player.winner();
-    checkCollisions(game.obstacle1);
+    checkCollisions();
   }, 1000 / fps);
 });
-
-
-    // var obstacle = $(".obstacle");
-    // var player = $(".player");
-    // var colisionMarioObstacle = obstacle.collision(player); 
-    // if (colisionMarioObstacle.length > 0) {
-    //   console.log(colisionMarioObstacle)
-    //   console.log("chocó");
-    //   console.log(game.player.posY)
-    //   game.player.moveY(0)
-    // }
-    // console.log(game.player)
-      // if (
-      //   game.player.posX < obstacle.positionX + obstacle.width &&
-      //   game.player.posX + 62 > obstacle.x &&
-      //   game.player.posY < obstacle.positionY + obstacle.height &&
-      //   game.player.posY + 70 > obstacle.positionY
-      //  ) {
-      //   //  console.log('hola')
-      //   game.player.moveY(0)
-      //  }
   
