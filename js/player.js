@@ -33,6 +33,18 @@ Player.prototype.moveY = function(direction) {
 
 Player.prototype.collisionLateral = function () {
   console.log("chocaste");
+  this.speedX= 0;
+}
+
+Player.prototype.collisionDown = function () {
+  console.log("chocaste desde abajo");
+  this.speedY= 0;
+}
+
+Player.prototype.collisionUp = function () {
+  console.log("chocaste desde arriba");
+  this.speedY = 0;
+  
 }
 
 Player.prototype.collisionDown = function () {
@@ -52,7 +64,7 @@ Player.prototype.render = function() {
     this.posX = newX;
   }
 
-  var newY = this.posY + this.speedY - 3;
+  var newY = this.posY + this.speedY - 5;
   if (newY >= 0 && newY <= this.size.height - 70) {
     this.posY = newY;
   }

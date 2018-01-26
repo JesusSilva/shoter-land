@@ -54,6 +54,21 @@ $(document).ready(function() {
         marioY + marioHeight > obstacleY[i]) {
         game.player.collisionLateral();
       }
+      if (marioY < obstacleY[i] + obstacleHeight[i] &&
+        marioY + marioHeight > obstacleY[i] &&
+        marioX < obstacleX[i] + obstacleWidth[i] &&
+        marioX + marioWidth > obstacleX[i]) {
+        game.player.collisionDown();
+      }
+      if (marioY < obstacleY[i] + obstacleHeight[i] &&
+        marioY + marioHeight > obstacleY[i] &&
+        marioX < obstacleX[i] + obstacleWidth[i] &&
+        marioX + marioWidth > obstacleX[i]) {
+        game.player.collisionUp();
+      }
+      // if (marioY > obstacleY[i] + obstacleHeight[i] && marioX > obstacleX[i]) {
+      //   game.player.collisionUp();
+      // }
     }
   }
 
