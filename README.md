@@ -1,1 +1,3 @@
-Mario Bros by Jesús Silva
+Super Mario Bross - Juego de plataforma 
+
+by Jesús Silva

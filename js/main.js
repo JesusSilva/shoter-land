@@ -1,8 +1,11 @@
 var game;
+var jump = true;
+
 $(document).ready(function() {
   game = new Game();
 
   document.onkeydown = function(e) {
+    e.preventDefault()
     switch (e.keyCode) {
       case 37:
         game.player.moveX(-1);
@@ -10,9 +13,13 @@ $(document).ready(function() {
       case 39:
         game.player.moveX(1);
         break;
-      case 38:
-        game.player.moveY(1);
-        break;
+      case 32:
+        if (jump){
+          jump = false;
+          //game.player.moveY(1);
+          setTimeout(() => {game.player.moveY(1);},0);
+          setTimeout(() => {game.player.moveY(0);},100);
+        }
     }
   };
 
@@ -24,8 +31,9 @@ $(document).ready(function() {
       case 39:
         game.player.moveX(0);
         break;
-      case 38:
+      case 32:
         game.player.moveY(0);
+        jump = true;
         break;
     }
   };
@@ -48,26 +56,26 @@ $(document).ready(function() {
     });
     
     for (i = 0; i < game.obstacles.length; i++){
-      if (marioX < obstacleX[i] + obstacleWidth[i] &&
-        marioX + marioWidth > obstacleX[i] &&
+
+      //Test when mario is above the obstacle
+      if (marioY + marioHeight > obstacleY[i] + obstacleHeight[i] &&
         marioY < obstacleY[i] + obstacleHeight[i] &&
-        marioY + marioHeight > obstacleY[i]) {
-        game.player.collisionLateral();
+        marioX < obstacleX[i] + obstacleWidth[i] &&
+        marioX + marioWidth > obstacleX[i]) {
+        game.player.collisionUp(obstacleY[i]);
       }
-      if (marioY < obstacleY[i] + obstacleHeight[i] &&
+      //Test when mario is below the obstacle
+      else if (marioY < obstacleY[i] + obstacleHeight[i] &&
         marioY + marioHeight > obstacleY[i] &&
         marioX < obstacleX[i] + obstacleWidth[i] &&
         marioX + marioWidth > obstacleX[i]) {
-        game.player.collisionDown();
+          game.player.collisionDown();
       }
-      if (marioY < obstacleY[i] + obstacleHeight[i] &&
-        marioY + marioHeight > obstacleY[i] &&
-        marioX < obstacleX[i] + obstacleWidth[i] &&
-        marioX + marioWidth > obstacleX[i]) {
-        game.player.collisionUp();
-      }
-      // if (marioY > obstacleY[i] + obstacleHeight[i] && marioX > obstacleX[i]) {
-      //   game.player.collisionUp();
+      // if (marioX < obstacleX[i] + obstacleWidth[i] &&
+      //   marioX + marioWidth > obstacleX[i] &&
+      //   marioY < obstacleY[i] + obstacleHeight[i] &&
+      //   marioY + marioHeight > obstacleY[i]) {
+      //   game.player.collisionLateral();
       // }
     }
   }
@@ -78,4 +86,3 @@ $(document).ready(function() {
     checkCollisions();
   }, 1000 / fps);
 });
-  

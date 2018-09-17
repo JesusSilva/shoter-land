@@ -18,7 +18,6 @@ function Player(maxSpeed, x, y, size, width, height) {
 //Funcion para mover el cubo
 Player.prototype.moveX = function(direction) {
   if (direction == -1){
-    "background-image", "url(../img/mario-reverse.png)"
     $(".player").css("background-image", "url(./img/mario-reverse.png)")
     this.speedX = this.maxSpeed * direction;
   }else {
@@ -27,24 +26,12 @@ Player.prototype.moveX = function(direction) {
   }
 };
 
-Player.prototype.moveY = function(direction) {
-  this.speedY = this.maxSpeed * direction;
+Player.prototype.moveY = function(direction, flag) {
+  this.speedY = (this.maxSpeed+30) * direction;
 };
 
-Player.prototype.collisionLateral = function () {
-  console.log("chocaste");
-  this.speedX= 0;
-}
-
-Player.prototype.collisionDown = function () {
-  console.log("chocaste desde abajo");
-  this.speedY= 0;
-}
-
-Player.prototype.collisionUp = function () {
-  console.log("chocaste desde arriba");
-  this.speedY = 0;
-  
+Player.prototype.collisionUp = function (position) {
+  this.posY = position + 35;
 }
 
 Player.prototype.collisionDown = function () {
@@ -52,19 +39,21 @@ Player.prototype.collisionDown = function () {
 }
 
 Player.prototype.winner = function() {
-  if (this.posX > this.size.width - 80 && this.posY == 500){
+  if (this.posX == 1030 && this.posY > 460){
     alert("¡¡ENHORABUENA, TE HAS PASADO EL JUEGO!!");
   }
 } 
 
 //Funcion para renderizar el Player y que se vea fluido
 Player.prototype.render = function() {
+  console.log('La posicion en X es: ' + this.posX + ' y la posicion en Y es: ' + this.posY);
+  console.log('this.size.width es: ' + this.size.width);
   var newX = this.posX + this.speedX;
   if (newX >= 0 && newX <= this.size.width - 62) {
     this.posX = newX;
   }
 
-  var newY = this.posY + this.speedY - 5;
+  var newY = this.posY + this.speedY - 9;
   if (newY >= 0 && newY <= this.size.height - 70) {
     this.posY = newY;
   }
